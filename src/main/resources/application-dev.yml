@@ -1,0 +1,10 @@
+# Development profile: verbose logging and full actuator health details.
+logging:
+  level:
+    com.utility.docvalidation: DEBUG
+    org.springframework.web: INFO
+
+management:
+  endpoint:
+    health:
+      show-details: always

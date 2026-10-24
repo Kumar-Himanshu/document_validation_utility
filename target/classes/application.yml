@@ -1,0 +1,51 @@
+# ---------------------------------------------------------------------------
+# Default (base) configuration. Profile-specific overrides live in
+# application-dev.yml and application-prod.yml. Activate with
+# SPRING_PROFILES_ACTIVE=dev|prod (defaults to dev when unset, see below).
+# ---------------------------------------------------------------------------
+spring:
+  application:
+    name: document-validation-utility
+  profiles:
+    # Default to the dev profile for local runs; override in production.
+    default: dev
+  servlet:
+    multipart:
+      enabled: false
+  codec:
+    # Hard cap on request body size. All input is treated as untrusted.
+    max-in-memory-size: 8KB
+
+server:
+  port: 8080
+  # Reject oversized request bodies / headers early at the connector level.
+  max-http-request-header-size: 8KB
+  tomcat:
+    max-swallow-size: 16KB
+    max-http-form-post-size: 16KB
+
+# Expose health, readiness/liveness probes and Prometheus metrics only.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  pattern:
+    # Include the correlation id (populated by the MDC filter) in every line.
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [cid=%X{correlationId:-none}] %-5level %logger{36} - %msg%n"

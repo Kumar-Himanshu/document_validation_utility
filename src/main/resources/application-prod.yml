@@ -1,0 +1,10 @@
+# Production profile: lean logging, no health detail leakage.
+logging:
+  level:
+    root: WARN
+    com.utility.docvalidation: INFO
+
+management:
+  endpoint:
+    health:
+      show-details: never

@@ -1,0 +1,14 @@
+com/utility/docvalidation/algorithm/VerhoeffAlgorithmTest.class
+com/utility/docvalidation/service/ValidatorRegistryTest$DummyValidator.class
+com/utility/docvalidation/service/ValidatorRegistryTest.class
+com/utility/docvalidation/service/DefaultDocumentValidationServiceTest.class
+com/utility/docvalidation/validator/card/CardValidatorTest.class
+com/utility/docvalidation/integration/BrdScenariosTest.class
+com/utility/docvalidation/dto/DocumentTypeTest.class
+com/utility/docvalidation/validator/aadhaar/AadhaarVidValidatorTest.class
+com/utility/docvalidation/util/SensitiveDataMaskerTest.class
+com/utility/docvalidation/validator/pan/PanValidatorTest.class
+com/utility/docvalidation/algorithm/LuhnAlgorithmTest.class
+com/utility/docvalidation/integration/ValidationIntegrationTest.class
+com/utility/docvalidation/algorithm/VerhoeffTestSupport.class
+com/utility/docvalidation/controller/ValidationControllerTest.class
