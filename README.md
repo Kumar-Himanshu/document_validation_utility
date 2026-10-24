@@ -278,22 +278,3 @@ These resolve points the BRD left open or implicit:
 10. **Transport security.** HTTPS termination is assumed to be handled by the
     deployment environment (ingress/load balancer); the service speaks HTTP in-
     cluster. No values are stored.
-
-## BRD gaps and risks
-
-- **No authentication/authorization.** The BRD does not specify auth for the
-  API. It is currently open. Add an API gateway, mTLS or token auth before
-  exposing it beyond a trusted network.
-- **No rate limiting.** Not in the BRD. Because validation is cheap and
-  stateless, a flood could still consume resources; consider gateway-level rate
-  limiting in production.
-- **"Valid" can be misread as proof of identity.** Mitigated by documentation
-  (this README and the API description), but worth reinforcing with API
-  consumers — Luhn/Verhoeff catch typos, not forgeries.
-- **Echoing the input back** returns potentially sensitive data to the caller.
-  This follows the BRD, but combined with the lack of enforced HTTPS in-process
-  it relies on the deployment to secure the channel.
-- **Rule volatility.** PAN categories or length rules can change. They live in
-  constants/regex in one validator each, so updates are localised, but there is
-  no external config to change them without a redeploy.
-```
